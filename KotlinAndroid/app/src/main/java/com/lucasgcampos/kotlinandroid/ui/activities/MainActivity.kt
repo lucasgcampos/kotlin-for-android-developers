@@ -1,12 +1,14 @@
-package com.lucasgcampos.kotlinandroid
+package com.lucasgcampos.kotlinandroid.ui.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.lucasgcampos.kotlinandroid.ui.adapters.ForecastListAdapter
+import com.lucasgcampos.kotlinandroid.R
+import com.lucasgcampos.kotlinandroid.domain.commands.RequestForecastCommand
 import org.jetbrains.anko.async
 import org.jetbrains.anko.find
-import org.jetbrains.anko.longToast
 import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity() {
@@ -27,15 +29,22 @@ class MainActivity : AppCompatActivity() {
 
         val forecastList: RecyclerView = find(R.id.forecast_list)
         forecastList.layoutManager = LinearLayoutManager(this)
-        forecastList.adapter = ForecastListAdapter(items)
+//        forecastList.adapter = ForecastListAdapter(items)
 
         val city = "SaoPaulo"
         val weatherKey = "54d8e9f611a6e0959b1d1471191bcbe1"
         val url = "http://api.openweathermap.org/data/2.5/weather?q=$city&APPID=$weatherKey"
 
+//        async() {
+//            Request(url).run()
+//            uiThread { longToast("Request performed") }
+//        }
+
         async() {
-            Request(url).run()
-            uiThread { longToast("Request performed") }
+            val result = RequestForecastCommand("94043").execute()
+            uiThread {
+                forecastList.adapter = ForecastListAdapter(result)
+            }
         }
     }
 }
