@@ -1,8 +1,8 @@
 package com.lucasgcampos.kotlinandroid.domain.commands
 
-import com.lucasgcampos.kotlinandroid.data.server.ForecastRequest
 import com.lucasgcampos.kotlinandroid.data.server.ForecastDataMapper
-import com.lucasgcampos.kotlinandroid.data.model.ForecastList
+import com.lucasgcampos.kotlinandroid.data.server.ForecastRequest
+import com.lucasgcampos.kotlinandroid.domain.model.ForecastList
 
 class RequestForecastCommand(val zipCode: String) : Command<ForecastList> {
 
