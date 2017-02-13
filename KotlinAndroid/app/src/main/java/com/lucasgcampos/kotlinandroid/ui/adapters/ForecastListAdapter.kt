@@ -10,8 +10,6 @@ import com.lucasgcampos.kotlinandroid.domain.model.ForecastList
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.adapter_forecast.view.*
 
-//import kotlinx.android.synthetic.main.adapter_forecast.view.*
-
 class ForecastListAdapter(val weekForecast: ForecastList, val itemClick: (Forecast) -> Unit): RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder? {
