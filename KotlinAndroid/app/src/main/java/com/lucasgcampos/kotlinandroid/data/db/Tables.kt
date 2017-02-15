@@ -1,4 +1,4 @@
-package com.lucasgcampos.kotlinandroid.data.db.table
+package com.lucasgcampos.kotlinandroid.data.db
 
 object CityForecastTable {
     val NAME = "CityForecast"

@@ -1,20 +1,17 @@
 package com.lucasgcampos.kotlinandroid.data.server
 
 import com.google.gson.Gson
-import com.lucasgcampos.kotlinandroid.data.ForecastResult
 import java.net.URL
 
-class ForecastRequest(val zipCode: String) {
+class ForecastRequest(val zipCode: Long) {
     companion object {
-        private val APP_ID = "54d8e9f611a6e0959b1d1471191bcbe1"
-        private val endpoint = "http://api.openweathermap.org/data/2.5/" +
-                "forecast/daily?mode=json&units=metric&cnt=7"
-        private val COMPLETE_URL = "${endpoint}&APPID=${APP_ID}&q="
+        private val APP_ID = "15646a06818f61f7b8d7823ca833e1ce"
+        private val URL = "http://api.openweathermap.org/data/2.5/forecast/daily?mode=json&units=metric&cnt=7"
+        private val COMPLETE_URL = "$URL&APPID=$APP_ID&q="
     }
 
     fun execute(): ForecastResult {
-        val link = COMPLETE_URL + zipCode
-        val forecastJsonStr = URL(link).readText()
+        val forecastJsonStr = URL(COMPLETE_URL + zipCode).readText()
         return Gson().fromJson(forecastJsonStr, ForecastResult::class.java)
     }
 }
